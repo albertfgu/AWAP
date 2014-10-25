@@ -29,7 +29,7 @@ Move Game::find_move()
   for (int x = 0; x < dimension; x++) {
     for (int y = 0; y < dimension; y++) {
       for (int rot = 0; rot < 4; rot++) {
-        for (int i = 0; i < blocks.size(); i++) {
+        for (int i = 0; i < blocks[my_number].size(); i++) {
           block b = blocks[my_number][i];
           block bb = rotate_block(b, rot);
           if (can_place(bb, Point(x, y))) {
