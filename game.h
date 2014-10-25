@@ -111,6 +111,7 @@ class Game{
   int num_turns;
 
   void mark(vector<vector<bool> > & marked, int player, int x, int y);
+  void unmark(vector<vector<bool> > & marked, int player, int x, int y);
 
 
 };

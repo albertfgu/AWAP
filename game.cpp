@@ -125,6 +125,17 @@ void Game::mark(vector<vector<bool> > & marked, int player, int x, int y) {
     }
 }
 
+void Game::unmark(vector<vector<bool> > & marked, int player, int x, int y) {
+    const int dist = 4;
+    for (int i = -dist; i <= dist; i++) {
+        for (int j = -dist; j <= dist; j++) {
+            if (0 <= i && i < dimension
+                    && 0 <= j && j < dimension) {
+                if (grid[i][j] == -1) marked[i][j] = true;
+            }
+        }
+    }
+}
 
 //Currently returns 0, you might want to modify this yourself!
 int Game::score_move(block b, Point p)
@@ -155,6 +166,18 @@ int Game::score_move(block b, Point p)
                   mark(marked, p, i, j);
           }
       }
+      //For player p, every square within 4 of a piece is marked.
+      for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+          if (marked[i][j]) {
+            if (i > 0 && grid[i - 1][j] == p) marked[i][j] = false; 
+            if (i < N - 1 && grid[i + 1][j] == p) marked[i][j] = false; 
+            if (j > 0 && grid[i][j - 1] == p) marked[i][j] = false; 
+            if (j < N - 1 && grid[i][j + 1] == p) marked[i][j] = false; 
+          }
+        }
+      }
+
       score[p] = 0;
       for (int i = 0; i < N; i++) {
           for (int j = 0; j < N; j++) {
