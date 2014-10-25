@@ -196,7 +196,7 @@ int Game::score_move(block b, Point p)
       final_score = -dist;
   }
   else if (num_turns <= 8) {
-      final_score = 2*space_score + piece_score;
+      final_score = 2*space_score - dist + piece_score;
   }
   else {
       final_score = blockSize * piece_score;
